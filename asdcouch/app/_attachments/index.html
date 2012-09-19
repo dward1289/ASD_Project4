@@ -1,0 +1,297 @@
+<!doctype html>  
+<html lang="en">
+<head>
+
+	<meta charset="utf-8">
+	
+	<title>Remind Me Later</title>
+	
+	<!--  Mobile viewport optimized: j.mp/bplateviewport -->
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<!-- Mobile IE needs ClearType for smoothing fonts -->
+	<meta http-equiv="cleartype" content="on">
+	
+	<!-- StyleSheets under here -->
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+	<link rel="stylesheet" href="style.css" />
+		
+	<!-- JavaScript is normally at the end of the body, except for Modernizr which enables HTML5 elements & feature detects -->
+	<script src="modernizr.custom.min.js"></script>
+	
+</head>
+
+<body>
+
+<div data-role="page" id="home">
+    
+    <div data-role="header" data-position="fixed" id="head">
+    <img src="http://i24.photobucket.com/albums/c39/youngbutcute07/Untitled-1-2.png" height="30px"/>
+    </div>
+        
+	<div data-role="content" id="mainView">
+
+	<div id="subHead">
+    	<center><h2>Remind Me Later</h2></center>
+	</div>
+
+<img src="http://i24.photobucket.com/albums/c39/youngbutcute07/feature-1.png" alt="Feature" width= "285px" id="feature"/>
+
+	<div data-role="controlgroup" data-mini="true" id="theMenu">
+		<!--Main Buttons-->
+		<a href="#additem" data-role="button" id="mainButton" data-icon="plus" data-iconpos="right" data-ajax="false">New Task</a>		
+		<a href="#priorityPage" data-role="button" id="mainButton" data-icon="arrow-r" data-iconpos="right" data-ajax="false">View Data By Priority</a>
+		<a href= "#about" data-role="button" id="mainButton" data-iconpos="right" data-icon="info" data-ajax="false">About</a>
+	</div>
+	
+		<div data-role ="collapsible" data-iconpos="right" id="jsonB" data-mini="true" data-theme="e">
+		<h3><center><a href= "#" data-ajax="false">JSON Tasks</a></center></h3>
+		<p><div id="thisJSON"></div></p></div>
+	
+	
+	</div>
+
+		
+	<div data-role="footer" data-position="fixed" id="foot">
+	<div data-role="navbar">
+	<ul>
+		<li><a href="#home" class="ui-btn-active">Home</a></li>
+		<li><a href="#contact">Contact</a></li>
+		<li><a href="#help">Help</a></li>
+	</ul>
+	</div><!-- /navbar -->
+	V1.0.2
+</div>
+</div>
+
+<div data-role="page" id="help">
+
+	<div data-role="header"  data-position="fixed">
+    	<img src="http://i24.photobucket.com/albums/c39/youngbutcute07/Untitled-1-2.png" height="30px"/>
+	</div>
+
+	<div data-role="content" id="mainView">
+		<div id="subHead">
+    <center><h2>Help</h2></center>
+		</div>
+
+	<div id="txt">
+		<ul>
+		<li><p id="trueTxt"><b>Create a task:</b><br/>Tap "Add New Task"</p></li>
+		<li><p id="trueTxt"><b>View all tasks:</b><br/>Tap "View Saved Tasks"</p></li>
+		<li><p id="trueTxt"><b>Edit existing tasks:</b><br/>Tap "View Saved Tasks", and tap "Edit Task" to edit.</p></li> 
+		<li><p id="trueTxt"><b>Delete existing task:</b><br/>Tap "Delete Task" to delete a task.</p></li>
+		</ul>
+		</div>
+	</div>
+
+<div data-role="footer" data-position="fixed">
+	<div data-role="navbar">
+	<ul>
+		<li><a href="#home" data-ajax="false">Home</a></li>
+		<li><a href="#contact" data-ajax="false">Contact</a></li>
+		<li><a href="#help" class="ui-btn-active" data-ajax="false">Help</a></li>
+	</ul>
+	</div><!-- /navbar -->
+	V1.0.2
+	</div>
+</div>
+
+<div data-role="page" id="contact">
+	<div data-role="header" data-position="fixed">
+    <img src="http://i24.photobucket.com/albums/c39/youngbutcute07/Untitled-1-2.png" height="30px"/>
+	</div>
+
+	<div data-role="content" id="mainView">
+		<div id="subHead">
+   		 <center><h2>Contact</h2></center>
+		</div>
+
+	<div id="txt">
+		<p>I want "Remind Me Later" to be as useful to you as possible. 
+		For any comments, or suggestions please contact me at:<br/><br/>
+		Email: dward1289@gmail.com<br/><br/></p> 
+	</div>
+	</div>		
+
+<div data-role="footer" data-position="fixed">
+	<div data-role="navbar">
+	<ul>
+		<li><a href="#home" data-ajax="false">Home</a></li>
+		<li><a href="#contact" data-ajax="false">Contact</a></li>
+		<li><a href="#help" data-ajax="false">Help</a></li>
+	</ul>
+	</div><!-- /navbar -->
+	V1.0.2
+</div>
+</div>
+
+<div data-role="page" id="additem" data-position="fixed">
+
+	<div data-role="header">
+    	<img src="http://i24.photobucket.com/albums/c39/youngbutcute07/Untitled-1-2.png" height="30px"/>
+	</div>
+
+	<div data-role="content" data-theme="e" id="addText">
+		<div id="subHead">
+    		<center><h2>New Task</h2></center>
+		</div>
+<div id="seeHere"></div>
+	<form id="taskForm" action="#">
+			
+		<div data-role="fieldcontain">
+			<ul class="nOT">
+				<li><label for="taskName">Name of Task:</label><input type="text" id="taskName" class="required" placeholder="Enter task name here." data-mini="true"/></li>
+			</ul>
+		</div>
+
+		<div data-role="fieldcontain">
+			<fieldset data-role="controlgroup" data-mini="true">
+			<!--Radioboxes-->
+			<legend>Select a Category:</legend>
+				<input type="radio" value="Home" id="home" name="whichCategory" class="required"/><label for="home">Home</label>
+				<input type="radio" value="Business" id="business" name="whichCategory"/><label for="business">Business</label>
+				<input type="radio" value="School" id="school" name="whichCategory"/><label for="school">School</label>
+			</fieldset>		
+		</div>
+
+		<div data-role="fieldcontain">		
+			<!--Date select-->
+			<ul class="dateSelects">
+				<li><label for="taskDate">Starting Date of Task:</label><input type="date" id="taskDate" data-mini="true"/></li>
+			</ul>
+		
+			<ul class="dateSelects">
+				<li><label for="taskEnd">Ending Date of Task:</label><input type="date" id="taskEnd" data-mini="true"/></li>
+			</ul>
+		</div>
+
+		<div data-role="fieldcontain">		
+			<!--Priority levels-->
+		
+			<ul class="pWord">
+				<li id="select"><label for="priority">Select Priority:</label>
+				<select id="priorities" data-native-menu="false" data-mini="true">
+				<option value="--Choose Priority Level--">--Choose Priority Level--</option>
+				<option value="High">High</option>
+				<option value="Medium">Medium</option>
+				<option value="Low">Low</option>
+				</select>
+				</li>
+			</ul>
+		</div>		
+	
+		<!--Stages of alerts available-->	
+		<ul class="alertNote">
+			<li><label for="taskDate">Select Alert Option:</label><input class="bar" type="range" id="alertWay" value="2" min="1" max="3" data-mini="true"/></li>
+
+			<!--Notes-->
+				<li class="noteWord"><label for="notes">Notes:</label></li>
+				<li><textarea class="noteNow" id="notes" placeholder="Enter a note about the task here." data-mini="true"></textarea></li>
+				<li><input type="hidden" value="true" /></li>
+		</ul>
+
+	
+	<center><div data-role="controlgroup" data-type="horizontal">
+		<button id="submit" data-mini="true">Save Task</button>
+		<input type="reset" value="Clear" data-icon="delete" data-iconpos="right" data-mini="true"/>
+	</div>
+
+	<div data-role="controlgroup" data-type="horizontal">
+		<a href= "#" id="clear" data-mini="true" data-role="button">Clear Saved Tasks</a>
+		<a href= "#" id="displayData" data-mini="true" data-role="button">Display Tasks</a>
+	</div>
+	</form>
+</div>	
+
+	<div data-role="footer" data-position="fixed">
+		<div data-role="navbar">
+			<ul>
+				<li><a href="#home" data-ajax="false">Home</a></li>
+				<li><a href="#contact" data-ajax="false">Contact</a></li>
+				<li><a href="#help" data-ajax="false">Help</a></li>
+			</ul>
+		</div><!-- /navbar -->
+		V1.0.2
+	</div>
+</div>
+
+<div data-role="page" id="about">
+	<div data-role="header" data-position="fixed">
+    	<img src="http://i24.photobucket.com/albums/c39/youngbutcute07/Untitled-1-2.png" height="30px"/>
+	</div>
+
+	<div data-role="content" id="mainView">
+		<div id="subHead">
+    		<center><h2>About</h2></center>
+		</div>
+
+	<div id="txt">
+		<ul id="trueTxt">
+			<li><p><b>Name:</b><br/> Remind Me Later</p></li>
+			<li><p><b>Version:</b><br/> 1.0.2</p></li>
+			<li><p><b>New Features Added:</b><br/> Easier navigation, and better layout since version 1.0.1</p></li>
+			<li><p><b>Creator:</b><br/> Devona Ward</p></li>
+			<li><p><a href="https://github.com/dward1289/MiU_Project4.git"><center>Git Repo Here!</center></a></li>
+		</ul>
+	</div>
+</div>		
+
+<div data-role="footer" data-position="fixed">
+	<div data-role="navbar">
+	<ul>
+		<li><a href="#home" data-ajax="false">Home</a></li>
+		<li><a href="#contact" data-ajax="false">Contact</a></li>
+		<li><a href="#help" data-ajax="false">Help</a></li>
+	</ul>
+	</div><!-- /navbar -->
+ 	V1.0.2
+	</div>
+</div>
+
+<div data-role="page" id="priorityPage">
+    
+    <div data-role="header" data-position="fixed" id="head">
+    <img src="http://i24.photobucket.com/albums/c39/youngbutcute07/Untitled-1-2.png" height="30px"/>
+    </div>
+        
+	<div data-role="content" id="mainView">
+
+	<div id="subHead">
+    	<center><h2> Data Categories</h2></center>
+	</div>
+	
+	
+	<div id="priorityHLM" data-role="listview"></div>
+	
+	
+		
+	</div>
+
+		
+	<div data-role="footer" data-position="fixed" id="foot">
+	<div data-role="navbar">
+	<ul>
+		<li><a href="#home" class="ui-btn-active">Home</a></li>
+		<li><a href="#contact">Contact</a></li>
+		<li><a href="#help">Help</a></li>
+	</ul>
+	</div><!-- /navbar -->
+	V1.0.2
+</div>
+</div>
+
+
+
+	<!-- JavaScript under here -->
+	<script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
+	<script src="jquery.validate.min.js"></script>
+	<script src="jquery.couch.js"></script>
+	<script src="main.js"></script>
+	
+
+</body>
+</html>
