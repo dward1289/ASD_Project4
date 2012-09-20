@@ -27,7 +27,7 @@ $("#home").on('pageinit', function(){
 				'</div>'
 				).appendTo("#thisJSON")
 			}
-			
+
 		)}
 		})
 	}
@@ -60,16 +60,16 @@ $("#home").on('pageinit', function(){
 				'</div>'
 				).appendTo("#thisJSON")
 			}
-			
+
 		)}
-						
+
 				});
 		}
 			$("#jsonB").on("click", testC);
 
 
 });
-	
+
 
 //Wait until the DOM is ready
 $("#additem").on('pageinit', function(){
@@ -77,7 +77,7 @@ $("#additem").on('pageinit', function(){
 	var validator = function () {
 	$('#taskForm').validate();
 	}
-	
+
 	//Find value of selected radio button.
 	var radiobox = function () {
 		var radios = document.forms[0].whichCategory;
@@ -87,8 +87,8 @@ $("#additem").on('pageinit', function(){
 				}
 			}
 		}
-	
-	
+
+
 	var toggleContr = function (n) {
 		switch(n) {
 			case "on":
@@ -101,14 +101,14 @@ $("#additem").on('pageinit', function(){
 				$("clear").css("display", "inline");
 				$("displayData").css("display", "inline");
 				$("items").css("display", "none");
-				
+
 				break;
 			default:
 				return false;
 				}
 			}
-			
-	
+
+
 	//Store data function
 	var storeData = function (key) {
 		//No key = new key
@@ -119,7 +119,7 @@ $("#additem").on('pageinit', function(){
 				//Existing key will be saved when edited
 				id = key;
 				}
-				
+
 		//Get all form field values and store in object
 		//Object properties contain array w/from label and input value
 		radiobox();
@@ -131,14 +131,14 @@ $("#additem").on('pageinit', function(){
 		item.ending = ["Ending Date of Task: ", $('#taskEnd').val()];
 		item.alertOption = ["Type of Alert: ", $('#alertWay').val()];
 		item.note = ["Notes", $('#notes').val()];
-	
+
 		//Save data into Local Storage: stringify to convert object to string
 		localStorage.setItem(id, JSON.stringify(item));		
 		alert("Task Saved!");
 		window.location.reload();
 	}
-	
-	
+
+
 	//Get data function
 	var getData = function () {
 		toggleContr("on");
@@ -146,7 +146,7 @@ $("#additem").on('pageinit', function(){
 			alert("There is no data in storage. Default data has been added.");
 			autoFillData();
 			}
-			
+
 		//Write data from local storage to browser
 		var makeDiv = $("<div></div>").attr("id", "items");
 		var makeList = $("<ul></ul>").attr("id", "wholeList");
@@ -159,7 +159,7 @@ $("#additem").on('pageinit', function(){
 			makeList.append(makeLi);
 			var key = localStorage.key(i);
 			var value = localStorage.getItem(key);
-		
+
 		//Convert string from local to object
 			var obj = JSON.parse(value);
 			var makeSubList = $("<ul></ul>");
@@ -171,14 +171,14 @@ $("#additem").on('pageinit', function(){
 				var optSubText = obj[r][0]+" "+obj[r][1];
 				makeSubLi.html(optSubText);
 				makeSubList.append(linksLi);
-				
+
 				}
-				
+
 				//Create edit and delete buttons for items in local storage
 				makeItemLinks(localStorage.key(i), linksLi); 
 		}
 	}
-	
+
 	//Image for categories
 	var getImage = function (catName, makeSubList) {
 		var imgLi = $("<li></li>");
@@ -186,7 +186,7 @@ $("#additem").on('pageinit', function(){
 		var newImg = $("<img></img>").attr("src", "images/"+ catName + ".png");
 		imgLi.html(newImg);
 	}
-	
+
 	var autoFillData = function () {
 		//JSON object comes from json.js, storing it in local storage.
 		for(var n in json){
@@ -194,14 +194,14 @@ $("#additem").on('pageinit', function(){
 			localStorage.setItem(id, JSON.stringify(json[n]));
 		}
 	}
-	
+
 var validator = function (e) {
 		//Define elements
 		var getPriority = $('#priorities');
 		var getNot = $('#taskName');
 		var getStart = $('#taskDate');
 		var getEnd = $('#taskEnd');
-		
+
 		//Reset error messages
 		errMsg.html("");
 		getPriority.css("border", "1px solid black");
@@ -212,7 +212,7 @@ var validator = function (e) {
 
 		//Error messages array
 		var message = [];
-		
+
 		//Priority validate
 		if(getPriority.val() === "--Choose Priority Level--") {
 			var priorityError = "Please select priority level.".fontcolor("red").bold();
@@ -251,7 +251,7 @@ var validator = function (e) {
 			storeData(this.key);
 			}		
 	}
-	
+
 	//Make edit and delete buttons for each stored item
 	var makeItemLinks = function (key, linksLi) {
 		//add edit single item link
@@ -259,27 +259,27 @@ var validator = function (e) {
 		edit.key = key;
 		edit.on("click", editItem);
 		linksLi.html(edit);
-		
+
 		//add line break
 		var breakIt = $("<br></br>");
 		linksLi.html(breakIt);
-		
+
 		//add delete single link
 		var deleteIt = $("<a></a>").attr("href", "#").text("Delete Task");
 		deleteIt.key = key;
-		
+
 		deleteIt.on("click", deleteItem);
 		linksLi.html(deleteIt);
 		}
-	
+
 	var editItem = function () {
 		//Grab the data first.
 		var value = localStorage.getItem(this.key);
 		var item = JSON.parse(value);
-		
+
 		//Show form again
 		toggleContr("off");
-		
+
 		//Populate with current
 		$('#taskName').val(item.name[1]);
 		$('#priorities').val(item.priorityLevel[1]);
@@ -296,22 +296,22 @@ var validator = function (e) {
 		if(item.category[1] == "School") {
 			$('#school').attr("checked", "checked");
 					}
-		
-		
+
+
 		//Remove listener from submit button.
 		submit1.off("click", storeData);
-		
+
 		//Change submit value to edit
 		//Found helpful code for button at: http://www.permadi.com/tutorial/jsInnerHTMLDOM/index.html
 		$('#submit').val("Edit Task");
 		var editSubmit = $('#submit');
-		
+
 		//Save key value in this function as property of editSubmit, use that value when save edited data.
 		editSubmit.on("click", validate);
 		editSubmit.key = this.key;
 	}
-	
-	
+
+
 	var deleteItem = function () {
 		var ask = confirm("Are you sure you want to delete this task?");
 		alert("Task deleted.");
@@ -325,7 +325,7 @@ var validator = function (e) {
 			return false;
 		}
 	}
-	
+
 	var clearLocal = function () {
 		if(localStorage.length === 0){
 			alert("There is no data to clear.")
@@ -336,14 +336,14 @@ var validator = function (e) {
 			window.location.reload();
 			return false;
 		}
-	
+
 	}
-		
+
 	//Variable defaults
 	var priorityGroup = ["--Choose Priority Level--","High","Medium","Low"];
 	var whichCategoryValue;
 	errMsg = $('#errors');
-	
+
 	//Set Link & Submit Click Events
 	var displayLink = $('#displayData');
 	displayLink.on("click", getData);
@@ -351,50 +351,65 @@ var validator = function (e) {
 	clearLink.on("click", clearLocal);
 	var submit1 = $('#submit');
 	submit1.on("click", validator);
-	
+
 });
 
 //Wait until the DOM is ready
 $("#priorityPage").on('pageinit', function(){
+
+
 		$.couch.db("asdproject").view("app/tasks" , {
-			success:function (result) {
-			$.each(result.rows, function(index, task){
-				var name = task.value.name[1];
-				var category = task.value.category[1];
-				var priority = task.value.priority[1];
-				var starting = task.value.start[1];
-				var ending = task.value.end[1];
-				var alert = task.value.alert[1];
-				var note = task.value.note[1];
-				$('' +
-				'<div class= "n">' +
-				'<u><h3>Task</h3></u>' +
-				'<ul data-role="listview">' +
-				'<li> Name of Task: ' + name + '</li>' +
-				'<li> Category: ' + category + '</li>' +
-				'<li> Priority: ' + priority + '</li>' +
-				'<li> Start: ' + starting + '</li>' +
-				'<li> End: ' + ending + '</li>' +
-				'<li> Alert: ' + alert + '</li>' +
-				'<li> Note: ' + note + '</li>' +
-				'</ul>' +
-				'<a href="#" id="editButton">Edit</a> <a href="#" id="deleteButton">Delete</a>'+
-				'<hr />' +
-				'</div>'
-				).appendTo("#priorityHLM")
-			}
-			
-		)}
+			success:function (data){
+			$('#priorityHLM').empty();
+			$.each(data.rows, function(index, value) {
+				var item = (value.value || value.doc);
+				$('#priorityHLM').append(
+						$('<li>').append(
+								$('<a>')
+									.attr("href", "item.html?item=" + item.name +
+											item.category + item.priority + item.start
+											+ item.end + item.alert + item.note)
+									.text(item.name[1])
+									)
+									);
+			});
+			$('#priorityHLM').listview('refresh');
+		}
 		})
-		
-		$("#priorityHLM").empty();
-		$.couch.db("asdproject").openDoc("task:A", {
-		    success: function(data) {
-		        console.log(data);
-		    },
-		    error: function(status) {
-		        console.log(status);
-		    }
-		});
+
+});
+
+var urlVars = function () {
+	var urlData = $($.mobile.acivePage).data("url");
+	var urlParts = urlData.split('?');
+	var urlPairs = urlParts[1].split('&');
+	var urlValues = {};
+	for (var pair in urlPairs) {
+		var keyValue = urlPairs[pair].split('=');
+		var key = decodeURIComponent(keyValue[0]);
+		var value = decodeURIComponent(keyValue[1]);
+		urlValues[key] = value;
+	}
+	return urlValues;
+};
+
+//Wait until the DOM is ready
+$("#itemPage").on('pageinit', function(){ 
+	var task = urlVars();
+	$.couch.db("asdproject").list("app/tasks", {
+		success: function (result) {
+		$.each(result.rows, function(index, item){
+			var name = item.value.name;
+			
+			$('' +
+					'<div class = here>' +
+					'<ul>' +
+					'<li>' + name + '</li>' +
+					'</ul>' +
+					'</div>'
+					).appendTo("#itemHLM")
+		})
+	}
+	})
 
 });

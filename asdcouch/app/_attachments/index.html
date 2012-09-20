@@ -42,7 +42,7 @@
 	<div data-role="controlgroup" data-mini="true" id="theMenu">
 		<!--Main Buttons-->
 		<a href="#additem" data-role="button" id="mainButton" data-icon="plus" data-iconpos="right" data-ajax="false">New Task</a>		
-		<a href="#priorityPage" data-role="button" id="mainButton" data-icon="arrow-r" data-iconpos="right" data-ajax="false">View Data By Priority</a>
+		<a href="#priorityPage" data-role="button" id="mainButton" data-icon="arrow-r" data-iconpos="right" data-ajax="false">View Saved Tasks</a>
 		<a href= "#about" data-role="button" id="mainButton" data-iconpos="right" data-icon="info" data-ajax="false">About</a>
 	</div>
 	
@@ -260,11 +260,11 @@
 	<div data-role="content" id="mainView">
 
 	<div id="subHead">
-    	<center><h2> Data Categories</h2></center>
+    	<center><h2> Saved Tasks</h2></center>
 	</div>
 	
 	
-	<div id="priorityHLM" data-role="listview"></div>
+	<div id="priorityHLM" data-role="listview" data-theme="e"></div>
 	
 	
 		
@@ -272,7 +272,7 @@
 
 		
 	<div data-role="footer" data-position="fixed" id="foot">
-	<div data-role="navbar">
+	<div data-role="navbar">	
 	<ul>
 		<li><a href="#home" class="ui-btn-active">Home</a></li>
 		<li><a href="#contact">Contact</a></li>
